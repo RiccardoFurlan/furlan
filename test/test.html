@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Accedi</title>
+    </head>
+    <body>
+        <form id="frmAccedi" name="frmAccedi" action="altra_pagina.php" method="get">
+            <label>Email</label>                  
+            <input type="text" id="txtEmail"   name="txtEmail" required="" maxlength="50" pattern="[a-z]{3,20}\.[a-z]{3,20}[0-9]*">
+            <input type="text" id="txtDominio" name="txtDominio" value="@buonarroti.tn.it" readonly="">
+            <br><br>
+            <label>Password</label>
+            <input type="password" name="txtPassword" required="" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}">
+            <br><br>
+            <input type="checkbox" name="chkRicordati" value="true"/>
+            <br><br>            
+            <input type="submit" name="btnAccedi" value="Accedi">
+            <script>
+                email = document.getElementById("txtEmail");
+
+                function validaEmail() {                  
+                    testo = email.value;
+                   
+                    if (testo.lastIndexOf("@") != -1)
+                        email.setCustomValidity("Rispetta il formato richiesto.");
+                }
+
+                email.onkeyup = validaEmail();
+               
+                
+               
+                form = document.getElementById("frmAccedi");
+                form.onsubmit = collega();
+                
+                
+                function collega(){
+                    dominio = document.getElementById("txtDominio");
+                   
+                    email.value = email.value + dominio.value;
+                };
+            </script>
+        </form>
+    </body>
+</html>

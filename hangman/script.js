@@ -12,11 +12,11 @@ var Hangman = (function () {
 
     Hangman.prototype.reset = function () {
 
-        this.STOPPED        = false;
-        this.MISTAKES       = 0;
-        this.GUESSES        = [];
+        this.stopped        = false;
+        this.mistakes       = 0;
+        this.guesses        = [];
         
-        this.WORD           = this.words[Math.floor(Math.random() * this.words.length)];
+        this.word           = this.words[Math.floor(Math.random() * this.words.length)];
 
         this.hideElementByClass('h');
         this.showElementByIdWithContent(this.elId + "_guessbox", null);
@@ -26,29 +26,29 @@ var Hangman = (function () {
     Hangman.prototype.guess = function (letter) {
         letter = letter.charAt(0).toUpperCase();
 
-        if (this.STOPPED || this.GUESSES.indexOf(letter) > -1) {
+        if (this.stopped || this.guesses.indexOf(letter) > -1) {
             return;
         }
 
-        this.GUESSES.push(letter);
+        this.guesses.push(letter);
         
         this.showElementByIdWithContent(this.elId + "_word", this.getGuessedfWord());
-        this.showElementByIdWithContent(this.elId + "_guesses", this.GUESSES.join(''));
+        this.showElementByIdWithContent(this.elId + "_guesses", this.guesses.join(''));
 
-        if (this.WORD.indexOf(letter) < 0) {
+        if (this.word.indexOf(letter) < 0) {
             
-            this.MISTAKES++;
+            this.mistakes++;
 
-            this.showElementByIdWithContent(this.elId + "_" + this.MISTAKES, null);
+            this.showElementByIdWithContent(this.elId + "_" + this.mistakes, null);
 
-            if (this.MISTAKES === 6) {
-                this.showElementByIdWithContent(this.elId + "_end", "GAME OVER!<br/>La parola era: " + this.WORD);
-                this.STOPPED = true;
+            if (this.mistakes === 6) {
+                this.showElementByIdWithContent(this.elId + "_end", "GAME OVER!<br/>La parola era: " + this.word);
+                this.stopped = true;
             }
-        } else if (this.WORD.indexOf(this.getGuessedfWord()) !== -1) {
+        } else if (this.word.indexOf(this.getGuessedfWord()) !== -1) {
             
-            this.showElementByIdWithContent(this.elId + "_end", "Congratulazioni!<br/>La parola era: " + this.WORD);
-            this.STOPPED = true;
+            this.showElementByIdWithContent(this.elId + "_end", "Congratulazioni!<br/>La parola era: " + this.word);
+            this.stopped = true;
         }
     };
 
@@ -68,9 +68,9 @@ var Hangman = (function () {
 
     Hangman.prototype.getGuessedfWord = function () {
         var result = "", i;
-        for (i = 0; i < this.WORD.length; i++) {
-            result += (this.GUESSES.indexOf(this.WORD[i]) > -1) ?
-                    this.WORD[i] : "_";
+        for (i = 0; i < this.word.length; i++) {
+            result += (this.guesses.indexOf(this.word[i]) > -1) ?
+                    this.word[i] : "_";
         }
         return result;
     };

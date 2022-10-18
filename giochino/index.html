@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+Creare un giochino in javascript 
+che dati due numeri ed una delle operazioni fondamentali scelte casualmente dal pc
+l'utente indovini il risultato
+
+timer = 5 secondi
+
+punteggio 10 = win
+punteggio 0 = start
+punteggio -10 = lose
+-->
+<html>
+    <head>
+        <title>Giochino</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />
+        <script src="../css/bootstrap.min.js"></script>
+
+        <style>
+
+        </style>
+
+    </head>
+
+
+    <body>
+
+        <div class="text-center">
+            <div class="col-6 mx-auto jumbotron">
+                <div class="align-items-center h-100" id="starting">
+                    <div> Dati due numeri ed una delle operazioni fondamentali scelte casualmente dal pc, l'utente indovini il risultato </div>
+                    <br />
+                    <button id="start" onclick="start()"> Start </button>
+                </div>
+
+                <div id="game" class="text-center pt-5 mt-5 fw-normal" style="display: none">
+
+                    <div> Score: 
+                        <label id="score">0</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            function start() {
+                start = document.getElementById("game")
+                start.style.display = ""
+                close = document.getElementById("starting")
+                close.style.display = "none"
+            }
+
+        </script>
+
+    </body>
+
+
+
+
+</html>
